@@ -49,7 +49,6 @@ public class EncodeFragment extends Fragment {
      * @param inputPath Parameter 1.
      * @return A new instance of fragment EncodeFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static EncodeFragment getInstance(FragmentManager fragmentManager, String inputPath, String outputPath) {
         EncodeFragment fragment = (EncodeFragment) fragmentManager.findFragmentByTag(TAG);
         if (fragment == null) {

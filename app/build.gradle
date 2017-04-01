@@ -32,16 +32,6 @@ android {
 dependencies {
     compile 'com.github.transloadit:java-sdk:d81350915b'
     compile 'andhradroid.dev:aFilechooser:1.0.1'
-    //compile('com.github.transloadit:transloadit-java-sdk:master-SNAPSHOT') {
-    //    exclude group: 'org.apache.httpcomponents', module: 'httpclient'
-    //    exclude group: 'com.mashape.unirest', module: 'unirest-java'
-    //}
-    //compile 'org.apache.httpcomponents:httpclient:4.5.2'
-    //compile group: 'cz.msebera.android' , name: 'httpclient', version: '4.4.1.1'
-    //compile 'com.mashape.unirest:unirest-android:1.0+'
-
-    //compile project(':unirest-android')
-
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {

@@ -71,15 +71,7 @@ public class CaptureActivity extends AppCompatActivity implements View.OnClickLi
         intent.setType("image/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
 
-        //try {
-            startActivityForResult(
-                    Intent.createChooser(intent, "Select a File to Upload"),
-                    REQUEST_SELECT_FILE);
-        /*} catch (android.content.ActivityNotFoundException ex) {
-            // Potentially direct the user to the Market with a Dialog
-            Toast.makeText(this, "Please install a File Manager.",
-                    Toast.LENGTH_SHORT).show();
-        }*/
+        startActivityForResult(Intent.createChooser(intent, "Select an image"), REQUEST_SELECT_FILE);
     }
 
     private File createImageFile() throws IOException {
