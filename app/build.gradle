@@ -30,7 +30,7 @@ android {
 }
 
 dependencies {
-    compile 'com.github.transloadit:java-sdk:d81350915b'
+    compile 'com.github.transloadit:java-sdk:ab2936e01a'
     compile 'andhradroid.dev:aFilechooser:1.0.1'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])

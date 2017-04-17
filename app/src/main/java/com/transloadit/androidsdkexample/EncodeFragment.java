@@ -190,7 +190,7 @@ public class EncodeFragment extends Fragment {
                 String pathString = paths[0];
                 try {
                     AssemblyResponse response = startAssembly(pathString);
-                    waitForAssembly(response);
+                    response = waitForAssembly(response);
                     String resultPath = downloadResult(response);
 
                     result = new Result(resultPath);
