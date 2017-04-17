@@ -11,12 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.ipaulpro.afilechooser.utils.FileUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import droidninja.filepicker.FilePickerBuilder;
+import droidninja.filepicker.FilePickerConst;
 
 public class CaptureActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -67,11 +70,10 @@ public class CaptureActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void dispatchSelectFileIntent() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-
-        startActivityForResult(Intent.createChooser(intent, "Select an image"), REQUEST_SELECT_FILE);
+        FilePickerBuilder.getInstance().setMaxCount(1)
+                .setSelectedFiles(new ArrayList<String>())
+                .setActivityTheme(R.style.AppTheme)
+                .pickPhoto(this);
     }
 
     private File createImageFile() throws IOException {
@@ -95,9 +97,9 @@ public class CaptureActivity extends AppCompatActivity implements View.OnClickLi
         String currentPhotoPath = "";
         if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             currentPhotoPath = mCurrentPhotoPath;
-        } else if(requestCode == REQUEST_SELECT_FILE && resultCode == RESULT_OK) {
-            Uri uri = data.getData();
-            currentPhotoPath = FileUtils.getPath(this, uri);
+        } else if(requestCode == FilePickerConst.REQUEST_CODE_PHOTO && resultCode == RESULT_OK) {
+            List<String> paths = data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA);
+            currentPhotoPath = paths.get(0);
         } else {
             return;
         }
