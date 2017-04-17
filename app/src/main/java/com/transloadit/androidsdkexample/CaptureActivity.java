@@ -59,8 +59,12 @@ public class CaptureActivity extends AppCompatActivity implements View.OnClickLi
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
+                // We can only define one FileProvider in all the manifests and since droidninja's
+                // filepicker already contains one, we cannot define our own and must therefore
+                // use its fileprovider.
+                // See https://github.com/DroidNinja/Android-FilePicker/blob/master/filepicker/src/main/AndroidManifest.xml#L19
                 Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.transloadit.androidsdkexample",
+                        "com.transloadit.androidsdkexample.droidninja.filepicker.provider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
