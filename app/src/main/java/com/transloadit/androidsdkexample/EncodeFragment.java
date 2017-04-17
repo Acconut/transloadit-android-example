@@ -158,10 +158,6 @@ public class EncodeFragment extends Fragment {
             );
             mCallback = callback;
             mOutputPath = outputPath;
-
-            try {
-                mTransloadit.setRequestSigning(false);
-            } catch(LocalOperationException e) {}
         }
 
         /**
