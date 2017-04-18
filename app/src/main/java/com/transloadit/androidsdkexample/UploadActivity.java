@@ -1,5 +1,6 @@
 package com.transloadit.androidsdkexample;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,7 +15,7 @@ public class UploadActivity extends AppCompatActivity implements EncodeFragment.
     private ImageView mImageView;
     private String mCurrentPhotoPath;
     private EncodeFragment mEncodeFragment;
-
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class UploadActivity extends AppCompatActivity implements EncodeFragment.
         super.onStart();
         showImage();
         uploadImage();
+        mProgressDialog = ProgressDialog.show(this, "Encoding...", "Please wait");
     }
 
     private void showImage() {
@@ -49,11 +51,13 @@ public class UploadActivity extends AppCompatActivity implements EncodeFragment.
     public void onEncodingComplete(String resultPath) {
         System.out.println(resultPath);
         mCurrentPhotoPath = resultPath;
+        mProgressDialog.dismiss();
         showImage();
     }
 
     @Override
     public void onEncodingFailed(Exception ex) {
+        mProgressDialog.dismiss();
         ex.printStackTrace();
     }
 }
